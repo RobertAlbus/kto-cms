@@ -1,0 +1,28 @@
+version: "3.7"
+
+services: 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: piranha
+    ports:
+      - 5010:5000
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    volumes:
+      - piranha-data:/var/lib/postgresql/data
+    hostname: database
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: piranha_user
+      POSTGRES_PASSWORD: piranha_password
+      POSTGRES_DB: piranha_database
+volumes:
+  piranha-data:
+
+
+    
