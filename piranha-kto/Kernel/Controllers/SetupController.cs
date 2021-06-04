@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Kernel.Models;
 using Microsoft.AspNetCore.Mvc;
 using Piranha;
 using Piranha.Extend;
 using Piranha.Extend.Fields;
 using Piranha.Extend.Blocks;
 using Piranha.Models;
-using piranha_kto.Models;
 
-namespace piranha_kto.Controllers
+namespace Kernel.Controllers
 {
     /// <summary>
     /// This controller is only used when the project is first started
