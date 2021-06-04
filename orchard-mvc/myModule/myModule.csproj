@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <RestoreAdditionalProjectSources>
+      https://nuget.cloudsmith.io/orchardcore/preview/v3/index.json
+    </RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OrchardCore.Module.Targets" Version="1.0.0-rc2-16252" />
+    <PackageReference Include="OrchardCore.ContentManagement" Version="1.0.0-rc2-16252" />
+    <PackageReference Include="OrchardCore.ContentTypes.Abstractions" Version="1.0.0-rc2-16252" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.0.0-rc2-16252" />
+  </ItemGroup>
+
+</Project>

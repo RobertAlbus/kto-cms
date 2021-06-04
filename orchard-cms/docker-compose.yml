@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: orchard-cms
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: orchardcore_user
+      POSTGRES_PASSWORD: orchardcore_password
+      POSTGRES_DB: orchardcore_database
+volumes:
+  postgresql-data:
