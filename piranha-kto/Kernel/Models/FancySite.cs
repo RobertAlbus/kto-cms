@@ -37,7 +37,11 @@ public class SiteAdministration
 
 public class ExtendedSettings
 {
-    [Field(Title = "A Custom Field")]
+    [Field(
+        Title = "A Custom Field",
+        Placeholder = "This is placeholder text"
+        )]
+    [FieldDescription("This text is to guide the content author")]
     public TextField MyCustomField { get; set; }
     
     [Field(Title = "Another Custom Field")]
