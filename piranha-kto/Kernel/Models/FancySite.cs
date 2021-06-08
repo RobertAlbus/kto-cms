@@ -22,10 +22,16 @@ public class FancySite : SiteContent<FancySite>
 
 public class SiteAdministration
 {
-    [Field(Title = "SiteColor")]
+    [Field(
+        Title = "SiteColor",
+        Options = FieldOption.HalfWidth
+        )]
     public ColorField SiteColor { get; set; }
     
-    [Field(Title = "Expiry Date")]
+    [Field(
+        Title = "Expiry Date",
+        Options = FieldOption.HalfWidth
+    )]
     public DateField ExpiryDate { get; set; }
 }
 
