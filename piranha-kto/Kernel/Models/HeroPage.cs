@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using Piranha.AttributeBuilder;
 using Piranha.Extend;
 using Piranha.Extend.Fields;
 using Piranha.Models;
 
-[PageType(Title = "Hero Page")]
+[PageType(Title = "Hero Page", UsePrimaryImage = false)]
 [ContentTypeRoute(Title = "Default", Route = "/heropage")]
 //By adding the ContentTypeRouteAttribute to your page type, all requests for pages of this page type will now be routed to /heropage.
 
@@ -23,6 +24,18 @@ public class HeroPage : Page<HeroPage>
         [Field]
         public TextField Body { get; set; }
     }
+    
+    public class MyRegion
+    {
+        [Field]
+        public StringField Title { get; set; }
+
+        [Field]
+        public TextField Body { get; set; }
+    }
+
+    [Region(ListTitle = "Title")]
+    public IList<MyRegion> Teasers { get; set; }
 
     [Region]
     public HeroRegion Hero { get; set; }
