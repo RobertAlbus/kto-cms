@@ -8,7 +8,7 @@ using Piranha.Models;
 [ContentTypeRoute(Title = "Default", Route = "/heropage")]
 //By adding the ContentTypeRouteAttribute to your page type, all requests for pages of this page type will now be routed to /heropage.
 
-[ContentTypeRoute(Title = "Start Page", Route = "/startpage")]
+[ContentTypeRoute(Title = "Controller Rendered", Route = "/Alt1")]
 //By adding a second route the page settings in the manager will now show a dropdown where the editor can select which route the current page should use.
 
 //[BlockItemType(typeof(Piranha.Extend.Blocks.HtmlBlock))]

@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Piranha;
 using Piranha.AspNetCore.Identity.PostgreSQL;
 using Piranha.AttributeBuilder;
@@ -29,6 +32,11 @@ namespace Kernel
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // https://github.com/nelson-rz-junior/BookNetCore3/blob/58daf9d53c9cd6f482b1d76d9005ed6f3e0449d5/Code/PracticalApps/NorthwindCms/Startup.cs
+            services.AddMvc().
+                AddPiranhaManagerOptions().
+                SetCompatibilityVersion(CompatibilityVersion.Latest);
+            
             // Service setup
             services.AddPiranha(options =>
             {
@@ -51,7 +59,8 @@ namespace Kernel
                     db.UseNpgsql(_config.GetConnectionString("piranha")));
                 options.UseIdentityWithSeed<IdentityPostgreSQLDb>(db =>
                     db.UseNpgsql(_config.GetConnectionString("piranha")));
-
+                
+                
                 /**
                  * Here you can configure the different permissions
                  * that you want to use for securing content in the
@@ -69,6 +78,8 @@ namespace Kernel
                 options.LoginUrl = "login";
                  */
             });
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -97,6 +108,7 @@ namespace Kernel
                 options.UseTinyMCE();
                 options.UseIdentity();
             });
+            app.UseMvc();
         }
     }
 }
