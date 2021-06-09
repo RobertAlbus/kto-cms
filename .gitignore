@@ -2,5 +2,13 @@ bin
 obj
 Localization
 wwwroot
+node_modules
+build
+dist
+db
 
+.cache
+.tmp
 .idea
+.vscode
+.log
