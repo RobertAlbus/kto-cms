@@ -1,0 +1,41 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: payload
+    environment:
+      PAYLOAD_SECRET: 637289d9-9a0e-4f42-9318-68b2a880ebc7  # LOCAL ONLY - DO NOT DO THIS IN PROD
+      MONGODB_URI: mongodb://payload:password@mongo:27017     # LOCAL ONLY - DO NOT DO THIS IN PROD
+    ports:
+      - 3000:3000
+    networks:
+      - internal
+    depends_on:
+      - db
+
+  db:
+    image: mongo
+    hostname: mongo
+    volumes:
+      - payload_mongo:/data/db
+    environment:
+      port: 27017
+      MONGO_INITDB_ROOT_USERNAME: payload   # LOCAL ONLY - DO NOT DO THIS IN PROD
+      MONGO_INITDB_ROOT_PASSWORD: password  # LOCAL ONLY - DO NOT DO THIS IN PROD
+    networks:
+      - internal
+    ports: 
+      - 27017:27017
+    restart: unless-stopped
+
+    
+networks:
+  internal:
+    driver: bridge
+
+volumes:
+    payload_mongo:
+    WOWEE:
+    
