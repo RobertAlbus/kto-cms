@@ -1,0 +1,25 @@
+version: "2"
+services:
+  apostrophe:
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - apostrophe-uploads:/app/public/uploads
+      - apostrophe-backups:/app/backups
+    environment:
+      - APOS_MONGODB_URI=mongodb://mongo:27017/db
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:4.4
+    restart: always
+    volumes:
+      - apostrophe-mongo-vol:/data/db
+    expose:
+      - "27017"
+volumes:
+  apostrophe-mongo-vol: 
+  apostrophe-uploads:
+  apostrophe-backups:
