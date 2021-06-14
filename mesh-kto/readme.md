@@ -1,0 +1,1 @@
+decent flexibility but the editor is kind of sucky
