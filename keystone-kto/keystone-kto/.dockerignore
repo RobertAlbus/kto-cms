@@ -1,0 +1,10 @@
+Dockerfile
+docker-compose.yml
+nodemon.json
+
+*.md
+*.lock
+
+node_modules
+dist
+.keystone
