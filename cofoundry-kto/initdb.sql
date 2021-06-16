@@ -1,7 +1,0 @@
-CREATE DATABASE Cofoundry
-GO
-ALTER LOGIN sa ENABLE ;  
-GO  
-ALTER LOGIN sa WITH PASSWORD = 'Your_password123' ;  
-GO  
-EXIT
