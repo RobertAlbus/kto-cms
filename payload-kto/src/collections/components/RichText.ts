@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload/types';
-import { Hierarchical } from '../_hierarchical';
+import { Hierarchical } from '../hierarchical';
 import { Slugs } from '../_slugs';
 
 export const RichText: CollectionConfig = {
