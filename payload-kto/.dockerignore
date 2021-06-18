@@ -1,6 +1,5 @@
 Dockerfile
 docker-compose.yml
-nodemon.json
 
 *.md
 *.lock
