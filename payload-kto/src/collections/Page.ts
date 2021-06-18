@@ -12,7 +12,8 @@ export const Page: CollectionConfig = {
   fields: [
     ...Hierarchical({
       childOf: [Slugs.Page, Slugs.Site],
-      children: [Slugs.Page, Slugs.DatasourceFolder]
+      children: [Slugs.Page, Slugs.DatasourceFolder],
+      hasPath: true
     }),
     {
       name: 'title',

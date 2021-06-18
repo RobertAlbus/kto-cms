@@ -14,7 +14,9 @@ import { Field } from 'payload/types';
 
 export const Hierarchical = (args: { 
   childOf?: string[], 
-  children?: string[]}): Field[] => {
+  children?: string[],
+  hasPath?: boolean
+}): Field[] => {
   
     let fields: Field[] = [];
     
@@ -33,6 +35,19 @@ export const Hierarchical = (args: {
         type: 'relationship',
         hasMany: true,
         relationTo: args.children
+      });
+    }
+
+    if (args.hasPath) {
+      fields.push({
+        name: 'url-slug',
+        type: 'text',
+        hidden: true,
+      });
+      fields.push({
+        name: 'path',
+        type: 'text',
+        hidden: true,
       });
     }
 
