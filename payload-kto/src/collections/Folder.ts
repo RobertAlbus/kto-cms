@@ -28,6 +28,7 @@ const Folder = (args: {
 export const DatasourceFolder: CollectionConfig = Folder({
   slug: Slugs.DatasourceFolder,
   additionalFields: Hierarchical({
+    belongsToCollection: Slugs.DatasourceFolder,
     childOf: [Slugs.Page],
     children: [...DataSources, Slugs.DatasourceFolder]
   }),
@@ -37,6 +38,7 @@ export const DatasourceFolder: CollectionConfig = Folder({
 export const ControllerFolder: CollectionConfig = Folder({
   slug: Slugs.ControllerFolder,
   additionalFields: Hierarchical({
+    belongsToCollection: Slugs.ControllerFolder,
     childOf: [Slugs.Site],
     children: [Slugs.Controller, Slugs.ControllerFolder]
   })

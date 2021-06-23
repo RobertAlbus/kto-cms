@@ -9,6 +9,7 @@ export const Banner: CollectionConfig = {
   },
   fields: [
     ...Hierarchical({
+      belongsToCollection: Slugs.Banner,
       childOf: [Slugs.DatasourceFolder]
     }),
     {
