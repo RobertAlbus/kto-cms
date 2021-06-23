@@ -10,6 +10,7 @@ export const Site: CollectionConfig = {
   },
   fields: [
     ...Hierarchical({
+      belongsToCollection: Slugs.Site,
       children: [Slugs.Page, Slugs.DatasourceFolder, Slugs.ControllerFolder]
     }),
     {

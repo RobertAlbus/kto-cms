@@ -10,6 +10,7 @@ export const Controller: CollectionConfig = {
   },
   fields: [
     ...Hierarchical({
+      belongsToCollection: Slugs.Controller,
       childOf: [Slugs.ControllerFolder]
     }),
     {

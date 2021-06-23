@@ -9,6 +9,7 @@ export const RichText: CollectionConfig = {
   },
   fields: [
     ...Hierarchical({
+      belongsToCollection: Slugs.RichText,
       childOf: [Slugs.DatasourceFolder]
     }),
     {

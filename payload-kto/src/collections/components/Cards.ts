@@ -9,6 +9,7 @@ export const Cards: CollectionConfig = {
   },
   fields: [
     ...Hierarchical({
+      belongsToCollection: Slugs.Cards,
       childOf: [Slugs.DatasourceFolder],
       children: [Slugs.Card]
     }),
@@ -31,6 +32,7 @@ export const Card: CollectionConfig = {
   },
   fields: [
     ...Hierarchical({
+      belongsToCollection: Slugs.Card,
       childOf: [Slugs.Cards]
     }),
     {

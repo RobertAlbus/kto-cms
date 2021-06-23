@@ -1,4 +1,5 @@
 import { Field } from 'payload/types';
+import { create_addToNewParentHook, removeFromOldParent } from './re_parent.hook';
 
 // Why `({...}) => Field[]` instead of Payload's internal BlockField type?
 
@@ -13,6 +14,7 @@ import { Field } from 'payload/types';
 // eg a Site cannot exist under a Page, but a Page can exist under a Site.
 
 export const Hierarchical = (args: { 
+  belongsToCollection: string, // collection slug
   childOf?: string[], 
   children?: string[],
   hasPath?: boolean
@@ -25,7 +27,13 @@ export const Hierarchical = (args: {
         name: 'parent',
         type: 'relationship',
         required: true,
-        relationTo: args.childOf,   // hook can use this to iterate through the api endpoints to find the parent
+        relationTo: args.childOf,
+        hooks: {
+          beforeChange: [
+            removeFromOldParent,
+            create_addToNewParentHook(args.belongsToCollection),
+          ],
+        },
       });
     }
 
