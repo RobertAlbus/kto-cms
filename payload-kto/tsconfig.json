@@ -12,6 +12,7 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "jsx": "react",
+    "sourceMap": true,
   },
   "ts-node": {
     "transpileOnly": true
