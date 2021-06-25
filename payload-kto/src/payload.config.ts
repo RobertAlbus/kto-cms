@@ -8,6 +8,7 @@ import { Users } from './collections/User';
 import { Site } from './collections/Site';
 import { ControllerFolder, DatasourceFolder } from './collections/Folder';
 import { Card, Cards } from './collections/components/Cards';
+import { Image } from './collections/Media';
 
 
 const payload: PayloadConfig = {
@@ -19,15 +20,18 @@ const payload: PayloadConfig = {
   collections: [
     
     Site,
-    DatasourceFolder,
+    Page,
+    
     ControllerFolder,
     Controller,
-    Page,
-
+    
+    DatasourceFolder,
     Banner,
     RichText,
     Cards,
     Card,
+    
+    Image,
 
     Users,
     Role,

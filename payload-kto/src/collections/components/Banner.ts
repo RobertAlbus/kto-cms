@@ -25,6 +25,11 @@ export const Banner: CollectionConfig = {
       type: 'textarea',
     },
     {
+      name: 'image',
+      type: 'upload',
+      relationTo: Slugs.Image
+    },
+    {
       name: "link text",
       type: "text",
     },

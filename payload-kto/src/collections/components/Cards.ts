@@ -40,8 +40,17 @@ export const Card: CollectionConfig = {
       type: 'text',
     },
     {
+      name: 'subheading',
+      type: 'text',
+    },
+    {
       name: 'body',
       type: 'richText',
+    },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: Slugs.Image
     },
     {
       name: "link text",

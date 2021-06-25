@@ -13,10 +13,6 @@ export const RichText: CollectionConfig = {
       childOf: [Slugs.DatasourceFolder]
     }),
     {
-      name: 'heading',
-      type: 'text',
-    },
-    {
       name: 'body',
       type: 'richText',
     }

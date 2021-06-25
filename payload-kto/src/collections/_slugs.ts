@@ -2,6 +2,7 @@ export const Slugs = {
   Controller: "controllers",
   DatasourceFolder: "datasource-folders",
   ControllerFolder: "controller-folders",
+  Image: "images",
   Page: "pages",
   Role: "roles",
   Site: "sites",
