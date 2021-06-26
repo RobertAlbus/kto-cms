@@ -1,4 +1,5 @@
 import { CollectionConfig } from "payload/types";
+import { CommonFields } from "./_fields/common.fields";
 import { Slugs } from "./_slugs";
 
 export const Image: CollectionConfig = {
@@ -27,10 +28,6 @@ export const Image: CollectionConfig = {
     // ]
   },
   fields: [
-    {
-      name: "name",
-      type: "text",
-      required: true
-    }
+    CommonFields.Name
   ]
 }

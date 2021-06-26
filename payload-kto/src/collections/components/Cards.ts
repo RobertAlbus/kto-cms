@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload/types';
 import { Hierarchical } from '../hierarchical';
+import { CommonFields } from '../_fields/common.fields';
 import { Slugs } from '../_slugs';
 
 export const Cards: CollectionConfig = {
@@ -35,36 +36,11 @@ export const Card: CollectionConfig = {
       belongsToCollection: Slugs.Card,
       childOf: [Slugs.Cards]
     }),
-    {
-      name: 'heading',
-      type: 'text',
-    },
-    {
-      name: 'subheading',
-      type: 'text',
-    },
-    {
-      name: 'body',
-      type: 'richText',
-    },
-    {
-      name: 'image',
-      type: 'upload',
-      relationTo: Slugs.Image
-    },
-    {
-      name: "link text",
-      type: "text",
-    },
-    {
-      name: 'page link',
-      type: 'relationship',
-      relationTo: [Slugs.Page]
-    },
-    {
-      name: 'external link',
-      type: 'text',
-    },
+    CommonFields.Heading,
+    CommonFields.Subheading,
+    CommonFields.Body,
+    CommonFields.Image,
+    CommonFields.Link
   ],
 }
 

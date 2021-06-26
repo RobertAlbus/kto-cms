@@ -1,5 +1,6 @@
 import { CollectionConfig, Field } from 'payload/types';
 import { Hierarchical } from './hierarchical';
+import { CommonFields } from './_fields/common.fields';
 import { DataSources, Slugs } from './_slugs';
 
 
@@ -11,14 +12,11 @@ const Folder = (args: {
   const Item: CollectionConfig = {
     slug: args.slug,
     admin: {
-      useAsTitle: "title"
+      useAsTitle: CommonFields.Name.name
     },
     fields: [
       ...args.additionalFields,
-      {
-        name: 'title',
-        type: 'text',
-      },
+      CommonFields.Name,
     ],
   }
 

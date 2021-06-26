@@ -1,12 +1,13 @@
 import { CollectionConfig } from 'payload/types';
 import { Hierarchical } from './hierarchical';
+import { CommonFields } from './_fields/common.fields';
 import { DataSources, Slugs } from './_slugs';
 
 export const Page: CollectionConfig = {
   slug: Slugs.Page,
   admin: {
-    useAsTitle: "title",
-    defaultColumns: ["title", "id"]
+    useAsTitle: "heading",
+    defaultColumns: ["heading", "id"]
   },
 
   fields: [
@@ -16,10 +17,11 @@ export const Page: CollectionConfig = {
       children: [Slugs.Page, Slugs.DatasourceFolder],
       hasPath: true
     }),
-    {
-      name: 'title',
-      type: 'text',
-    },
+    CommonFields.Heading,
+    CommonFields.Subheading,
+    CommonFields.Body,
+    // CommonFields.Image,
+    CommonFields.Link,
     {
       name: 'renderings',
       type: 'array',
