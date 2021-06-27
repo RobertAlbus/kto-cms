@@ -27,7 +27,7 @@ export const DatasourceFolder: CollectionConfig = Folder({
   slug: Slugs.DatasourceFolder,
   additionalFields: Hierarchical({
     belongsToCollection: Slugs.DatasourceFolder,
-    childOf: [Slugs.Page],
+    childOf: [Slugs.Page, Slugs.Site],
     children: [...DataSources, Slugs.DatasourceFolder]
   }),
 });
