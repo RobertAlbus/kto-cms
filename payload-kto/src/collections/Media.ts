@@ -28,6 +28,11 @@ export const Image: CollectionConfig = {
     // ]
   },
   fields: [
-    CommonFields.Name
+
+    CommonFields.Name,
+    {
+      name: 'alt text',
+      type: 'text'
+    },
   ]
 }
