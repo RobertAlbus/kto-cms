@@ -10,6 +10,8 @@ services:
       MONGODB_URI: mongodb://payload:password@mongo:27017     # LOCAL ONLY - DO NOT DO THIS IN PROD
     ports:
       - 3000:3000
+    volumes:
+      - media_upload:/media
     networks:
       - internal
     depends_on:
@@ -37,5 +39,6 @@ networks:
     driver: bridge
 
 volumes:
-    payload_mongo:
+  payload_mongo:
+  media_upload:
     
