@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload/types';
-import { Hierarchical } from '../hierarchical';
+import { HierarchicalFields } from '../hierarchical/HierarchicalFields';
 import { CommonFields } from '../_fields/common.fields';
 import { Slugs } from '../_slugs';
 
@@ -9,7 +9,7 @@ export const Cards: CollectionConfig = {
     useAsTitle: 'heading',
   },
   fields: [
-    ...Hierarchical({
+    ...HierarchicalFields({
       belongsToCollection: Slugs.Cards,
       childOf: [Slugs.DatasourceFolder],
       children: [Slugs.Card]
@@ -32,7 +32,7 @@ export const Card: CollectionConfig = {
     useAsTitle: 'heading',
   },
   fields: [
-    ...Hierarchical({
+    ...HierarchicalFields({
       belongsToCollection: Slugs.Card,
       childOf: [Slugs.Cards]
     }),

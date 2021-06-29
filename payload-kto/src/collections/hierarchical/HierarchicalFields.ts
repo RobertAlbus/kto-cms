@@ -13,7 +13,7 @@ import { create_addToNewParentHook, removeFromOldParent } from './re_parent.hook
 
 // eg a Site cannot exist under a Page, but a Page can exist under a Site.
 
-export const Hierarchical = (args: { 
+export const HierarchicalFields = (args: { 
   belongsToCollection: string, // collection slug
   childOf?: string[], 
   children?: string[],

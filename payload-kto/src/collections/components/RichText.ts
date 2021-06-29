@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload/types';
-import { Hierarchical } from '../hierarchical';
+import { HierarchicalFields } from '../hierarchical/HierarchicalFields';
 import { CommonFields } from '../_fields/common.fields';
 import { Slugs } from '../_slugs';
 
@@ -9,7 +9,7 @@ export const RichText: CollectionConfig = {
     useAsTitle: 'heading',
   },
   fields: [
-    ...Hierarchical({
+    ...HierarchicalFields({
       belongsToCollection: Slugs.RichText,
       childOf: [Slugs.DatasourceFolder]
     }),

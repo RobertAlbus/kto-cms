@@ -1,5 +1,5 @@
 import { CollectionConfig, Field } from 'payload/types';
-import { Hierarchical } from './hierarchical';
+import { HierarchicalFields } from './hierarchical/HierarchicalFields';
 import { CommonFields } from './_fields/common.fields';
 import { DataSources, Slugs } from './_slugs';
 
@@ -25,7 +25,7 @@ const Folder = (args: {
 
 export const DatasourceFolder: CollectionConfig = Folder({
   slug: Slugs.DatasourceFolder,
-  additionalFields: Hierarchical({
+  additionalFields: HierarchicalFields({
     belongsToCollection: Slugs.DatasourceFolder,
     childOf: [Slugs.Page, Slugs.Site],
     children: [...DataSources, Slugs.DatasourceFolder]
@@ -35,7 +35,7 @@ export const DatasourceFolder: CollectionConfig = Folder({
 
 export const ControllerFolder: CollectionConfig = Folder({
   slug: Slugs.ControllerFolder,
-  additionalFields: Hierarchical({
+  additionalFields: HierarchicalFields({
     belongsToCollection: Slugs.ControllerFolder,
     childOf: [Slugs.Site],
     children: [Slugs.Controller, Slugs.ControllerFolder]

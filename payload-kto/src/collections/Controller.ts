@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload/types';
-import { Hierarchical } from './hierarchical';
+import { HierarchicalFields } from './hierarchical/HierarchicalFields';
 import { Slugs } from './_slugs';
 
 
@@ -9,7 +9,7 @@ export const Controller: CollectionConfig = {
     useAsTitle: "title"
   },
   fields: [
-    ...Hierarchical({
+    ...HierarchicalFields({
       belongsToCollection: Slugs.Controller,
       childOf: [Slugs.ControllerFolder]
     }),

@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload/types';
-import { Hierarchical } from './hierarchical';
+import { HierarchicalFields } from './hierarchical/HierarchicalFields';
 import { Slugs } from './_slugs';
 
 export const Site: CollectionConfig = {
@@ -9,7 +9,7 @@ export const Site: CollectionConfig = {
     defaultColumns: ["title", "id"]
   },
   fields: [
-    ...Hierarchical({
+    ...HierarchicalFields({
       belongsToCollection: Slugs.Site,
       children: [Slugs.Page, Slugs.DatasourceFolder, Slugs.ControllerFolder]
     }),
