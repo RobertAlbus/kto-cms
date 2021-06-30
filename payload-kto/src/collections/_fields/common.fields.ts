@@ -1,4 +1,4 @@
-import { Field, GroupField, TextareaField, TextField, UploadField } from "payload/dist/fields/config/types"
+import { Field, GroupField, RichTextField, TextareaField, TextField, UploadField } from "payload/dist/fields/config/types"
 import { Slugs } from "../_slugs"
 
 export class CommonFields { 
@@ -20,9 +20,9 @@ export class CommonFields {
     type: 'text',
   }
 
-  static Body: TextareaField = {
+  static Body: RichTextField = {
     name: 'body',
-    type: 'textarea',
+    type: 'richText',
   }
 
   static Image: UploadField = {
