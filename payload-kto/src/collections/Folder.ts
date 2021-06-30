@@ -1,5 +1,6 @@
 import { CollectionConfig, Field } from 'payload/types';
 import { HierarchicalFields } from './hierarchical/HierarchicalFields';
+import { addToNewParent, removeFromOldParent } from './hierarchical/HierarchicalHooks';
 import { CommonFields } from './_fields/common.fields';
 import { DataSources, Slugs } from './_slugs';
 
@@ -13,6 +14,12 @@ const Folder = (args: {
     slug: args.slug,
     admin: {
       useAsTitle: CommonFields.Name.name
+    },
+    hooks: {
+      afterChange: [
+        removeFromOldParent,
+        addToNewParent(args.slug)
+      ]
     },
     fields: [
       ...args.additionalFields,

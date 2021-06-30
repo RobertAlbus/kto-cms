@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload/types';
 import { HierarchicalFields } from './hierarchical/HierarchicalFields';
+import { addToNewParent, removeFromOldParent } from './hierarchical/HierarchicalHooks';
 import { CommonFields } from './_fields/common.fields';
 import { DataSources, Slugs } from './_slugs';
 
@@ -8,6 +9,12 @@ export const Page: CollectionConfig = {
   admin: {
     useAsTitle: "heading",
     defaultColumns: ["heading", "id"]
+  },
+  hooks: {
+    afterChange: [
+      removeFromOldParent,
+      addToNewParent(Slugs.Page)
+    ]
   },
 
   fields: [

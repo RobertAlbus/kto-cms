@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload/types';
 import { HierarchicalFields } from '../hierarchical/HierarchicalFields';
+import { addToNewParent, removeFromOldParent } from '../hierarchical/HierarchicalHooks';
 import { CommonFields } from '../_fields/common.fields';
 import { Slugs } from '../_slugs';
 
@@ -7,6 +8,12 @@ export const Cards: CollectionConfig = {
   slug: Slugs.Cards,
   admin: {
     useAsTitle: 'heading',
+  },
+  hooks: {
+    afterChange: [
+      removeFromOldParent,
+      addToNewParent(Slugs.Page)
+    ]
   },
   fields: [
     ...HierarchicalFields({
@@ -30,6 +37,12 @@ export const Card: CollectionConfig = {
   slug: Slugs.Card,
   admin: {
     useAsTitle: 'heading',
+  },
+  hooks: {
+    afterChange: [
+      removeFromOldParent,
+      addToNewParent(Slugs.Page)
+    ]
   },
   fields: [
     ...HierarchicalFields({

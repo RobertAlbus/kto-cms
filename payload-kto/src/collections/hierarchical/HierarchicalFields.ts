@@ -1,5 +1,4 @@
 import { Field } from 'payload/types';
-import { create_addToNewParentHook, removeFromOldParent } from './re_parent.hook';
 
 // Why `({...}) => Field[]` instead of Payload's internal BlockField type?
 
@@ -30,8 +29,8 @@ export const HierarchicalFields = (args: {
         relationTo: args.childOf,
         hooks: {
           beforeChange: [
-            removeFromOldParent,
-            create_addToNewParentHook(args.belongsToCollection),
+            // removeFromOldParent,
+            // create_addToNewParentHook(args.belongsToCollection),
           ],
         },
       });

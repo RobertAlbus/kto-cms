@@ -1,30 +1,28 @@
 import payload from "payload";
-import { FieldHook } from "payload/types";
+import { AfterChangeHook } from "payload/dist/collections/config/types";
 
+export const removeFromOldParent: AfterChangeHook = (submission) => {
 
-export const removeFromOldParent: FieldHook = async (submission) => {
-  if (!['update', 'create'].includes(submission.operation)
-      || submission.value == undefined ) return;
-      // TODO: ALSO IF submitted value is unchanged
+  if (submission.operation != 'update') return;
 
-  const originalParent = getParent(submission.originalDoc.parent);
+  const originalParent = getParent(submission.doc.parent);
   originalParent.document.then((parent) => {
-    
+
 
     console.log("REMOVE FROM PARENT")
     console.log("original children")
     console.log(getChildren(parent))
-    
+
     console.log("writable children")
     console.log(getChildren(parent)
     .map(convertChildToWritableFormat)
     )
-    
+
 
     let updatedChildren = 
       getChildren(parent)
         .map(convertChildToWritableFormat)
-        .filter( child => child.id != submission.originalDoc.id);
+        .filter( child => child.id != submission.doc.id);
 
     console.log("updated children")
     console.log(updatedChildren)
@@ -40,46 +38,40 @@ export const removeFromOldParent: FieldHook = async (submission) => {
   });
 }
 
+
 // this function is just a builder for the actual hook
-// submission.originalDoc does not contain the collection type for the hooked item
+// submission.doc does not contain the collection type for the hooked item
 // so this has to be passed in
-export const create_addToNewParentHook = (belongsToCollection: string): FieldHook => {
-  const addToNewParent: FieldHook = async (submission) => {
-    if (!['update', 'create'].includes(submission.operation)
-        || submission.value == undefined ) return;
-        // TODO: ALSO IF submitted value is unchanged
-  
+export const addToNewParent = (belongsToCollection: string): AfterChangeHook => {
+  const hook: AfterChangeHook = async (submission) => {
+    if ( !['update', 'create'].includes(submission.operation) ) return;
     
-    
-    const newParent = getParent(submission.value)
+    const newParent = getParent(submission.doc.parent)
     newParent.document.then((parent) => {
   
       console.log("ADD TO PARENT")
-      // console.log("original children")
-      // console.log(getChildren(parent))
+      console.group("parent")
+      console.log(parent)
       
-      console.log("writable children")
-      console.log(getChildren(parent)
-      .map(convertChildToWritableFormat)
-      )
-      
-  
       let updatedChildren = 
         getChildren(parent)
-          .map(convertChildToWritableFormat);
+        .map(convertChildToWritableFormat);
   
       updatedChildren.push({
         relationTo: belongsToCollection,
-        id: submission.originalDoc["id"]
+        id: submission.doc.id as string
       })
   
       console.log("updated children")
       console.log(updatedChildren)
-  
-      console.log("submission")
-      console.log(submission)
-  
-      
+
+      console.log({
+        collection: newParent.type,
+        id: newParent.id,
+        data: {
+          children: updatedChildren
+        }
+      })
           
       payload.update({
         collection: newParent.type,
@@ -91,9 +83,8 @@ export const create_addToNewParentHook = (belongsToCollection: string): FieldHoo
     });
   }
   
-  return addToNewParent;
+  return hook;
 }
-
 
 const getParent = (obj: any): {type: string, id: string, document: Promise<any>} => {
   let type:string = obj["relationTo"];
@@ -144,3 +135,5 @@ const convertChildToWritableFormat = (child: ReceiveableChild): WritableChild =>
       id: child.value.id
     }
 }
+
+
