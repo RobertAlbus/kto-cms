@@ -19,10 +19,10 @@ export const removeFromOldParent: AfterChangeHook = (submission) => {
     )
 
 
-    let updatedChildren = 
+    let updatedChildren =
       getChildren(parent)
         .map(convertChildToWritableFormat)
-        .filter( child => child.id != submission.doc.id);
+        .filter( child => child.value != submission.doc.id);
 
     console.log("updated children")
     console.log(updatedChildren)
@@ -45,23 +45,23 @@ export const removeFromOldParent: AfterChangeHook = (submission) => {
 export const addToNewParent = (belongsToCollection: string): AfterChangeHook => {
   const hook: AfterChangeHook = async (submission) => {
     if ( !['update', 'create'].includes(submission.operation) ) return;
-    
+
     const newParent = getParent(submission.doc.parent)
     newParent.document.then((parent) => {
-  
+
       console.log("ADD TO PARENT")
       console.group("parent")
       console.log(parent)
-      
-      let updatedChildren = 
+
+      let updatedChildren: any =
         getChildren(parent)
         .map(convertChildToWritableFormat);
-  
+
       updatedChildren.push({
         relationTo: belongsToCollection,
         id: submission.doc.id as string
       })
-  
+
       console.log("updated children")
       console.log(updatedChildren)
 
@@ -71,8 +71,16 @@ export const addToNewParent = (belongsToCollection: string): AfterChangeHook => 
         data: {
           children: updatedChildren
         }
-      })
-          
+      });
+
+      // change object to have value instead of id for the relationship id field
+      updatedChildren = updatedChildren.map((child) => {
+        return {
+          value: child.id,
+          relationTo: child.relationTo,
+        }
+      });
+
       payload.update({
         collection: newParent.type,
         id: newParent.id,
@@ -82,7 +90,7 @@ export const addToNewParent = (belongsToCollection: string): AfterChangeHook => 
       });
     });
   }
-  
+
   return hook;
 }
 
@@ -94,7 +102,7 @@ const getParent = (obj: any): {type: string, id: string, document: Promise<any>}
     type: type,
     id: id,
     document: payload.findByID({
-      collection: type, 
+      collection: type,
       id: id,
       depth: 1
     }) as Promise<any>
@@ -123,12 +131,12 @@ const getChildren = (parent: any): ReceiveableChild[] => {
       child.value.id &&
       child.relationTo
   });
-  
-  return [...new Set(children)]; 
+
+  return [...new Set(children)];
   // cast to set to remove duplicates and spread back into an array.
   // if this is changed to not use Set() then remove "downlevelIteration" from tsconfig.json
 }
- 
+
 const convertChildToWritableFormat = (child: ReceiveableChild): WritableChild => {
   return {
       relationTo: child.relationTo,
