@@ -2,7 +2,7 @@ import payload from "payload";
 import { AfterChangeHook } from "payload/dist/collections/config/types";
 
 export const removeFromOldParent: AfterChangeHook = (submission) => {
-
+return;
   if (submission.operation != 'update') return;
 
   const originalParent = getParent(submission.doc.parent);
@@ -50,6 +50,9 @@ export const addToNewParent = (belongsToCollection: string): AfterChangeHook => 
     newParent.document.then((parent) => {
   
       console.log("ADD TO PARENT")
+      console.group("doc")
+      console.log(submission.doc)
+
       console.group("parent")
       console.log(parent)
       

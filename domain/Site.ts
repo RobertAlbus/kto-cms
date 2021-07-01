@@ -5,4 +5,5 @@ export class Site {
 
   footer: string; // TODO this needs to be created
   faviconUrl: string;
+  logoUrl: string;
 }

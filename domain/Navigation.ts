@@ -1,16 +1,16 @@
 import { Link } from "./fragments/Link";
 
 export class Navigation {
-  logoUrl: string;
   links: Link[];
   tabs: NavTab[];
 }
 
 export class NavTab {
-  tabText: string;
+  heading: string;
   columns: NavTabColumn[];
 }
 
 export class NavTabColumn {
+  heading: string;
   links: Link[];
 }
